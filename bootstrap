@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# Copyright 2016-present Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+usage() {
+  echo "Usage:"
+  echo "$0 [ComponentName] [path]"
+  echo
+  echo "Creates a directory structure for a GOS component in the provided path."
+  echo
+  echo "Example usage: $0 MyComponent ~/workbench/"
+}
+
+if [ "$#" -lt 2 ]; then
+  usage
+  exit -1
+fi
+
+COMPONENT_NAME="$1"
+ROOT_PATH="$2"
+COMPONENT_PATH="$ROOT_PATH/$COMPONENT_NAME"
+
+mkdir -p "$COMPONENT_PATH"
+touch    "$COMPONENT_PATH/.clang-format"
+touch    "$COMPONENT_PATH/CHANGELOG.md"
+touch    "$COMPONENT_PATH/README.md"
+touch    "$COMPONENT_PATH/$COMPONENT_NAME.podspec"
+mkdir -p "$COMPONENT_PATH/docs"
+mkdir -p "$COMPONENT_PATH/docs/assets"
+mkdir -p "$COMPONENT_PATH/examples"
+mkdir -p "$COMPONENT_PATH/examples/apps"
+mkdir -p "$COMPONENT_PATH/examples/resources"
+mkdir -p "$COMPONENT_PATH/examples/supplemental"
+mkdir -p "$COMPONENT_PATH/src"
+touch    "$COMPONENT_PATH/src/$COMPONENT_NAME.h"
+mkdir -p "$COMPONENT_PATH/src/private"
+mkdir -p "$COMPONENT_PATH/tests"
+mkdir -p "$COMPONENT_PATH/tests/ui"
+mkdir -p "$COMPONENT_PATH/tests/unit"
